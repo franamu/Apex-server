@@ -1,6 +1,5 @@
 require('./config/config');
 const express = require('express');
-const mongoose = require('mongoose');
 
 const app = express();
 
@@ -12,17 +11,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-//conectarse a la base de datos Mongo
-mongoose.connect(process.env.URLDB, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true
-}, (err, res) => {
-
-	if (err) throw err;
-	console.log('Base de Datos Online');
-
-});
+//requerir ruteo de preguntas
+app.use( require('./routes/preguntas') );
 
 app.listen(process.env.PORT, () => {
 	console.log('Escuchando puerto: ', 3001);

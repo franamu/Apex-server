@@ -49,7 +49,8 @@ app.get('/preguntas', function (req, resp) {
 				.then( (archivo) => {
 					resp.json({
 						ok: true,
-						result
+						result,
+						updated: datetime
 					})
 				})
 				.catch( (err) => {
